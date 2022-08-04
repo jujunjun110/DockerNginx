@@ -7,7 +7,7 @@ shell:
 	docker compose exec -it docker-nginx bash
 
 start:
-	docker start b23e1571e801 
+	docker start docker-nginx
 
 stop:
-	docker stop b23e1571e801
+	docker stop docker-nginx
