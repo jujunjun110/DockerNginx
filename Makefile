@@ -13,3 +13,7 @@ start:
 
 stop:
 	docker stop $(PJNAME)
+
+log:
+	docker logs $(PJNAME) -f
+
