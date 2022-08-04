@@ -1,13 +1,15 @@
 .PHONY: setup shell start stop
 
+PJNAME := docker-nginx
+
 setup:
-	docker run --name docker-nginx -v ./files:/usr/share/nginx/html:ro -d -p 8180:80 nginx
+	docker run --name $(PJNAME) -v ./files:/usr/share/nginx/html:ro -d -p 8180:80 nginx
 
 shell:
-	docker compose exec -it docker-nginx bash
+	docker compose exec -it $(PJNAME) bash
 
 start:
-	docker start docker-nginx
+	docker start $(PJNAME) 
 
 stop:
-	docker stop docker-nginx
+	docker stop $(PJNAME)
