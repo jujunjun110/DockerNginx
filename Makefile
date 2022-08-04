@@ -1,19 +1,24 @@
-.PHONY: setup shell start stop
+.PHONY: setup shell start stop log
 
-PJNAME := docker-nginx
+PJ_NAME := docker-nginx2
 
 setup:
-	docker run --name $(PJNAME) -v ./files:/usr/share/nginx/html:ro -d -p 8180:80 nginx
+	docker run --name $(PJ_NAME) -v $(PWD)/files:/usr/share/nginx/html:ro -d -p 8180:80 nginx
+	docker compose exec -it $(PJ_NAME) bash 
 
 shell:
-	docker compose exec -it $(PJNAME) bash
+	docker compose exec -it $(PJ_NAME) bash
 
 start:
-	docker start $(PJNAME) 
+	docker start $(PJ_NAME) 
+	echo http://localhost:8180
 
 stop:
-	docker stop $(PJNAME)
+	docker stop $(PJ_NAME)
 
 log:
-	docker logs $(PJNAME) -f
+	docker logs $(PJ_NAME) -f
 
+rm:
+	docker stop $(PJ_NAME)
+	docker rm $(PJ_NAME)
